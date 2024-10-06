@@ -27,13 +27,15 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
             host: "sandbox.smtp.mailtrap.io",
             port: 2525,
             auth: {
-              user: "113051571a5e50",
-              pass: "********3f58"
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASSWORD
             }
-          });
+        });
 
+        // console.log("this is transporter", transporter);
+        console.log("this is email user", process.env.EMAIL_PASSWORD, process.env.EMAIL_USER);
         const mailOptions = {
-            from: "master@gmail.com",
+            from: "hitesh@gmail.com",
             to: email,
             subject: emailType == "VERIFY" ? "Verify Your Email" : "Reset Your Password",
             html: `<p>
@@ -44,12 +46,26 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
             </p>`,
         };
 
-        const mailResponse = await transporter.sendMail(mailOptions);
+        /*    const mailResponse = await transporter.sendMail(mailOptions); */
 
+
+        const mailResponse = await transporter.sendMail({
+            from: 'hitesh@gmail.com', // sender address
+            to: email, // list of receivers
+            subject: "Hello ✔", // Subject line
+            text: "Hello world?", // plain text body
+            html: "<b>Hello world?</b>", // html body
+        });
+
+        console.log("this is mail response", mailResponse);
+        console.log("Message sent", mailResponse.messageId);
+        console.log("Message sent", mailResponse.messageId);
+        console.log("Message sent", mailResponse.messageId);
+        console.log("Message sent", mailResponse.messageId);
         return mailResponse;
 
     } catch (error: any) {
-        console.log("Error::", error.message);
-        throw new Error(error.message);
+        console.log("Error in Mail Sending::", error);
+        // throw new Error(error.message);
     }
 };

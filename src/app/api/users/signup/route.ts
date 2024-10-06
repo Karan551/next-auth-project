@@ -9,11 +9,9 @@ import bcryptjs from "bcryptjs";
 connect();
 
 
-export async function Post(request: NextRequest) {
+export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json();
-
-        console.log(reqBody);
 
         const { username, email, password } = reqBody;
 
@@ -23,11 +21,10 @@ export async function Post(request: NextRequest) {
             return NextResponse.json({ error: "User already exist." }, { status: 400 });
         }
 
-        // hash password ?(doubt)
+        // hash password 
         const salt = await bcryptjs.genSalt(10);
 
-        const hashedPassword = bcryptjs.hash(password, salt);
-
+        const hashedPassword =await bcryptjs.hash(password, salt);
 
         const newUser = await new User({
             username,
@@ -35,13 +32,14 @@ export async function Post(request: NextRequest) {
             password: hashedPassword
         });
 
+        console.log("this is new user", newUser);
 
         const savedUser = await newUser.save();
 
         console.log("this is saved user::", savedUser);
 
         // send verification email
- 
+
         sendEmail({ emailType: "VERIFY", email, userId: savedUser._id });
 
 

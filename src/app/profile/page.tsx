@@ -41,6 +41,8 @@ export default function ProfilePage() {
     }
   };
 
+
+
   useEffect(() => {
     const getUserName = async () => {
       try {
@@ -89,13 +91,15 @@ export default function ProfilePage() {
             Hello &nbsp;
             <span className="text-orange-400">{toTitleCase(user)}</span>
           </p>
-          <div>
+          <div className="flex">
             <Link
               href={`/profile/${data}/`}
               className=" px-4 py-2 rounded-lg   bg-teal-500 text-white hover:bg-teal-700 mx-2"
             >
               Click Here
             </Link>
+ 
+            
             <Link
               href={"#"}
               onClick={handleLogout}

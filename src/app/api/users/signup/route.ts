@@ -12,9 +12,7 @@ connect();
 export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json();
-
         const { username, email, password } = reqBody;
-
         // To check user is already exist or not
         const user = await User.findOne({ email });
         if (user) {
@@ -24,7 +22,7 @@ export async function POST(request: NextRequest) {
         // hash password 
         const salt = await bcryptjs.genSalt(10);
 
-        const hashedPassword =await bcryptjs.hash(password, salt);
+        const hashedPassword = await bcryptjs.hash(password, salt);
 
         const newUser = await new User({
             username,
@@ -40,7 +38,7 @@ export async function POST(request: NextRequest) {
 
         // send verification email
 
-        sendEmail({ emailType: "VERIFY", email, userId: savedUser._id });
+        await sendEmail({ emailType: "VERIFY", email, userId: savedUser._id });
 
 
         return NextResponse.json({

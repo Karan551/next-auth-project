@@ -1,7 +1,11 @@
+"use client";
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathName = usePathname();
+  console.log("this is pathname::", pathName);
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -15,7 +19,7 @@ export default function Navbar() {
             alt="Auth Logo"
           />
           <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white text-blue-500">
-           Auth
+            Auth
           </span>
         </Link>
         <button
@@ -47,7 +51,10 @@ export default function Navbar() {
             <li>
               <Link
                 href="/"
-                className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
+                className={`block py-2 px-3  rounded   md:p-0 dark:text-white 
+                  md:hover:text-blue-700
+                  md:dark:text-blue-500 
+                  ${pathName === "/" ? "md:text-blue-700 text-white bg-blue-700" : ""}  md:bg-transparent`}
                 aria-current="page"
               >
                 Home
@@ -56,7 +63,10 @@ export default function Navbar() {
             <li>
               <Link
                 href="/signup"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                className={` block py-2 px-3 text-gray-900 rounded hover:bg-gray100 
+                md:hover:bg-transparent md:border-0
+                 ${pathName === "/signup" ? "md:text-blue-700 text-white bg-blue-700" : ""} md:bg-transparent 
+                  md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`}
               >
                 Signup
               </Link>
@@ -64,7 +74,12 @@ export default function Navbar() {
             <li>
               <Link
                 href="/login"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                className={`block py-2 px-3 text-gray-900 rounded
+                
+              md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent
+                
+                  ${pathName === "/login" ? "md:text-blue-700 text-white bg-blue-700" : ""} md:bg-transparent 
+                `}
               >
                 Login
               </Link>

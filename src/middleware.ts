@@ -26,7 +26,7 @@ export const config = {
     matcher: [
         "/logout",
         "/me",
-        "/profile"
-
+        "/profile",
+        "/profile/:path*",
     ]
 };

@@ -84,7 +84,7 @@ function UserProfile({ params }: any) {
 
   return (
     <section className="flex flex-col justify-center items-center min-h-screen  px-4 py-6 text-3xl">
-      <div className="bg-white rounded-lg px-4 py-6 w-1/2 space-y-3 text-black ">
+      <div className="bg-white rounded-lg px-4 py-6 w-1/2 space-y-3 text-black border border-black">
         <h1 className="text-4xl text-center my-2 bg-gray-300 py-3 rounded-lg">
           User Information :-
         </h1>

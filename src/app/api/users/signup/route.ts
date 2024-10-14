@@ -30,11 +30,11 @@ export async function POST(request: NextRequest) {
             password: hashedPassword
         });
 
-        console.log("this is new user", newUser);
+     
 
         const savedUser = await newUser.save();
 
-        console.log("this is saved user::", savedUser);
+       
 
         // send verification email
 

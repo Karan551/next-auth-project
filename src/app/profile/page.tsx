@@ -49,9 +49,9 @@ export default function ProfilePage() {
         setLoading(true);
         const url = "/api/users/me/";
         const response = await axios.get(url);
-        console.log("this is response", response);
+
         if (response.data) {
-          console.log("this is response----", response.data);
+      
           setUser(response.data.userInfo.username);
           setData(response.data.userInfo._id);
           setLoading(false);
@@ -73,7 +73,7 @@ export default function ProfilePage() {
       </div>
     );
     
-  console.log("this is user id ::", data);
+
 
   if (errorMsg)
     return (

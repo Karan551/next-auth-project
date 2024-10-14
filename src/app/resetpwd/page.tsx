@@ -17,22 +17,21 @@ export default function ResetPwdPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  // console.log("this is search params::", searchParams);
+  
 
   const handleSubmit = async (e: FormEvent) => {
     try {
       e.preventDefault();
       if (validMatch) {
       
-        // const update = { token, password };
-        // console.log("this is valid match", update);
+        
 
         const response = await axios.post("/api/users/resetpwd/", {
           token,
           password,
         });
 
-        console.log("this is response", response);
+
         setPassword("");
         setConfirmPassword("");
         toast.success("Password Reset Successfully.", {
@@ -60,20 +59,14 @@ export default function ResetPwdPage() {
 
   }, [password, confirmPassword]);
 
-  console.log("this is password", password);
-  console.log("this is confirm password", confirmPassword);
-  console.log("this is valid match::", validMatch);
-  console.log("this is disable::", btnDisable);
+
 
   useEffect(() => {
     const urlToken = searchParams.get("token");
-    console.log("this is url token::", urlToken);
+
     setToken(urlToken || "");
   }, [token]);
 
-
-
-  console.log("this is token::", token);
 
   if (errorMsg)
     return (

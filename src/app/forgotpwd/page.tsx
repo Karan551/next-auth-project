@@ -16,10 +16,10 @@ export default function normalUserPage() {
       setLoading(true)
       e.preventDefault();
       const response = await axios.post("/api/users/forgotpassword/", JSON.stringify({email}));
-      console.log("this is response::", response);
+
 
       if (response.data.success) {
-        console.log("this is forgot password user response::----", response);
+     
         toast.success("Check Your Email.", {
           duration: 2000,
           position: "top-center",
@@ -58,7 +58,7 @@ export default function normalUserPage() {
         <div className="loading mx-auto mt-4"></div>
       </div>
     );
-console.log("this is error msg::",errorMsg)
+
   if (errorMsg)
     return (
       <div className=" grid place-content-center min-h-screen">

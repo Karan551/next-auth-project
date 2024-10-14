@@ -11,7 +11,6 @@ export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json();
 
-        console.log("this is reqbody in forPwd", reqBody);
         const { email } = reqBody;
 
         const user = await User.findOne({ email });

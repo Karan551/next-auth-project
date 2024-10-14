@@ -24,10 +24,9 @@ function UserProfile({ params }: any) {
       try {
         const url = "/api/users/me/";
         const response = await axios.get(url);
-        console.log("this is response", response);
+ 
         if (response.data) {
-          console.log("this is response----", response.data);
-          console.log("this ----", response.data.userInfo);
+        
           setUserDetail(response.data.userInfo);
         }
       } catch (error: any) {
